@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>プライバシーポリシー — SubscSmart</title>
+<style>
+  :root {
+    --c-bg: #fafaf7;
+    --c-surface: #ffffff;
+    --c-fg: #1f2024;
+    --c-muted: #6b7077;
+    --c-line: #e6e4de;
+    --c-accent: #10b981;
+    --c-warn: #c2410c;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 40px;
+    --radius: 8px;
+    --font-body: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic UI", "Segoe UI", system-ui, sans-serif;
+    --font-display: "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --c-bg: #0f172a;
+      --c-surface: #1c1d23;
+      --c-fg: #ececef;
+      --c-muted: #9aa0a8;
+      --c-line: #2c2e36;
+      --c-accent: #34d399;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--c-bg);
+    color: var(--c-fg);
+    font: 15px/1.8 var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-4) calc(var(--space-6) * 2);
+  }
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.4; }
+  h1 { font-size: 30px; margin: 0 0 var(--space-3); }
+  h2 { font-size: 22px; margin: var(--space-6) 0 var(--space-3); border-bottom: 1px solid var(--c-line); padding-bottom: var(--space-2); }
+  h3 { font-size: 17px; margin: var(--space-5) 0 var(--space-2); color: var(--c-accent); }
+  p { margin: 0 0 var(--space-4); }
+  a { color: var(--c-accent); text-underline-offset: 3px; }
+  ul { margin: 0 0 var(--space-4); padding-left: var(--space-5); }
+  li { margin-bottom: var(--space-2); }
+  .meta { color: var(--c-muted); font-size: 13px; margin-bottom: var(--space-5); }
+  .callout {
+    background: var(--c-surface);
+    border-left: 3px solid var(--c-accent);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    margin: 0 0 var(--space-4);
+  }
+  table { width: 100%; border-collapse: collapse; margin: var(--space-3) 0 var(--space-4); font-size: 14px; }
+  th, td { text-align: left; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--c-line); vertical-align: top; }
+  th { color: var(--c-muted); font-weight: 600; }
+  footer { color: var(--c-muted); font-size: 13px; margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--c-line); }
+</style>
+</head>
+<body>
+<main>
+
+<h1>プライバシーポリシー</h1>
+<p class="meta">最終更新日: 2026 年 5 月 30 日 / 適用アプリ: SubscSmart（iOS / Android）</p>
+
+<div class="callout">
+  SubscSmart（以下「本アプリ」）はサブスクリプション管理アプリです。本アプリは利用者の入力したサブスクリプション情報をすべて端末内に保存し、開発者の運営するサーバーには保存しません。ただし、サービス改善のための匿名の利用状況分析（第 2.4 項）など、一部の限定された情報は外部サービスへ送信されます。本ポリシーは本アプリが端末から外部サービスへ通信する範囲と、その際の情報の取り扱いを定めるものです。
+</div>
+
+<h2>1. 収集しない情報</h2>
+<p>本アプリは、利用者のサブスクリプション一覧・支払履歴・診断結果・テーマ設定・通知設定など、アプリ内で生成されるすべてのデータを <strong>端末内のローカルストレージ（SQLite および AsyncStorage）にのみ</strong> 保存します。利用者の氏名・住所・電話番号・支払いカード情報等は一切収集しません。</p>
+
+<h2>2. 外部サービスとの通信</h2>
+<p>本アプリは機能を提供するため、端末から以下の外部サービスへ通信を行います。各サービスのプライバシー方針は各社のサイトをご確認ください。</p>
+
+<h3>2.1 サブスクリプションアイコンの取得</h3>
+<ul>
+  <li><strong>Apple iTunes Search API</strong>: 利用者が登録したサブスクリプション名で検索クエリを発行し、対応するアプリアイコン画像を取得します。送信される情報はサブスクリプション名のみで、利用者を特定できる情報は含みません。</li>
+  <li><strong>Brandfetch / Logo.dev</strong>: 既知ブランドのロゴ画像を取得するため、サービスドメイン名（例: <code>netflix.com</code>）を含むリクエストを送信します。利用者個人を特定できる情報は送信しません。</li>
+  <li><strong>Google ファビコンサービス（s2 favicons）</strong>: 上記サービスでロゴが取得できない場合のフォールバックとして、サービスドメイン名を含むリクエストを Google のファビコン取得エンドポイントへ送信し、サイトアイコンを取得します。送信される情報はサービスドメイン名のみで、利用者個人を特定できる情報は含みません。</li>
+</ul>
+
+<h3>2.2 Google カレンダー連携（任意機能）</h3>
+<p>利用者がカレンダー連携を有効にした場合に限り、Google OAuth 2.0 を用いて Google アカウントの認可を取得し、Google Calendar API（スコープ: <code>https://www.googleapis.com/auth/calendar.events</code>）を通じて利用者のカレンダーにサブスクリプションの更新日イベントを書き込みます。本機能を使用しない場合、Google への通信は発生しません。アクセストークンは利用者の端末内 AsyncStorage に保存され、本アプリの開発者は受け取りません。利用者は本アプリの設定からいつでも認可を解除できます。</p>
+
+<h3>2.3 アプリ内課金（RevenueCat）</h3>
+<p>有料機能の購入・解約・復元のため、本アプリは <strong>RevenueCat, Inc.</strong> の SDK を組み込んでいます。RevenueCat は購入トランザクションの管理のために、匿名の端末識別子・購入レシート・購入ステータスを処理します。氏名・メールアドレス・支払いカード情報は処理しません。詳細は <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">RevenueCat プライバシーポリシー</a> をご覧ください。実際の決済は Apple（App Store）または Google（Google Play）が処理し、本アプリは利用者の支払いカード情報に一切アクセスしません。</p>
+
+<h3>2.4 利用状況の分析（PostHog）</h3>
+<p>本アプリは、サービスの品質改善と利用傾向の把握のため、<strong>PostHog</strong> を用いた匿名のイベント分析を実施しています。分析データは PostHog Inc. のサーバー（既定: <code>app.posthog.com</code>）へ送信されます。</p>
+<ul>
+  <li><strong>端末識別子</strong>: iOS の <code>identifierForVendor</code>（IDFV）を匿名の識別子として使用します。IDFV はアプリの再インストールで変化し、個人を特定することはできません。広告識別子（IDFA）は使用せず、アプリをまたいだトラッキングも行いません。</li>
+  <li><strong>収集するイベントの例</strong>: アプリの起動、オンボーディングの進捗・完了、有料プラン画面の表示、購入・復元の結果、サブスクリプション登録時の<strong>カテゴリと金額</strong>（サービス名は送信しません）、共有カードの生成、レビュー導線・フィードバック導線の操作。</li>
+  <li><strong>収集しない情報</strong>: 氏名・メールアドレス・電話番号・位置情報・支払いカード情報・サブスクリプションのサービス名やメモ等、利用者個人を特定できる情報は一切送信しません。</li>
+</ul>
+<p>詳細は <a href="https://posthog.com/privacy" target="_blank" rel="noopener">PostHog プライバシーポリシー</a> をご覧ください。分析の取り扱いに関するご要望は、本ポリシー末尾の連絡先までお問い合わせください。</p>
+
+<h2>3. データの保管場所と期間</h2>
+<table>
+  <tr><th>データ種別</th><th>保管場所</th><th>保管期間</th></tr>
+  <tr><td>サブスクリプション情報・診断履歴・設定</td><td>端末内 SQLite</td><td>利用者がアプリを削除するまで</td></tr>
+  <tr><td>Google アクセストークン</td><td>端末内 AsyncStorage</td><td>トークン有効期限まで、または利用者がサインアウトするまで</td></tr>
+  <tr><td>購入レシート</td><td>Apple / Google / RevenueCat</td><td>各社の規約に準じます</td></tr>
+  <tr><td>匿名の利用イベント・IDFV</td><td>PostHog（<code>app.posthog.com</code>）</td><td>PostHog の規約・保持設定に準じます</td></tr>
+</table>
+
+<h2>4. 利用者の権利と操作</h2>
+<ul>
+  <li><strong>削除</strong>: 本アプリをアンインストールすると、端末内に保存されたすべてのデータが削除されます（購入履歴を除く）。</li>
+  <li><strong>カレンダー連携の解除</strong>: 本アプリの設定からいつでも Google アカウントとの連携を解除できます。</li>
+  <li><strong>購入の復元</strong>: 設定画面の「購入を復元」から、同一 Apple ID / Google アカウントでの過去の購入を復元できます。</li>
+  <li><strong>通知の管理</strong>: 端末の OS 設定または本アプリの通知設定から、通知の有効・無効を切り替えられます。</li>
+</ul>
+
+<h2>5. 子供のプライバシー</h2>
+<p>本アプリは 13 歳未満の児童を主たる利用対象としていません。13 歳未満の児童から個人を特定できる情報を意図的に収集することはありません。保護者の方は、お子様が本アプリを利用する場合、本ポリシーをご確認ください。</p>
+
+<h2>6. セキュリティ</h2>
+<p>本アプリは外部サービスとの通信に HTTPS を用い、合理的なセキュリティ対策を講じます。ただしインターネット通信およびデバイス上のストレージに 100% 安全な方式は存在しないため、絶対的な安全を保証するものではありません。</p>
+
+<h2>7. 第三者サービスのリンク</h2>
+<p>本アプリにはサポート・ヘルプ・サービス公式サイトへのリンクが含まれる場合があります。これらのリンク先のプライバシー方針は各サイトの管理者にお問い合わせください。</p>
+
+<h2>8. ポリシーの変更</h2>
+<p>本ポリシーは法令の改正や本アプリの機能変更に応じて改訂することがあります。重要な変更がある場合は、本アプリ内またはストア掲載ページで通知します。本ページの「最終更新日」を改訂日として扱います。</p>
+
+<h2>9. 連絡先</h2>
+<p>本ポリシーまたは本アプリのプライバシーに関するお問い合わせは、以下までご連絡ください。</p>
+<ul>
+  <li>サポート: <a href="support.html">サポートページ</a></li>
+</ul>
+
+<footer>
+  <p>SubscSmart Privacy Policy v1.1 — 2026-05-30</p>
+</footer>
+
+</main>
+</body>
+</html>
