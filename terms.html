@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>利用規約 — SubscSmart</title>
+<title>Terms of Service — SubscSmart</title>
 <style>
   :root {
     --c-bg: #fafaf7; --c-surface: #ffffff; --c-fg: #1f2024; --c-muted: #6b7077;
@@ -26,10 +26,61 @@
   .meta { color: var(--c-muted); font-size: 13px; margin-bottom: 24px; }
   .callout { background: var(--c-surface); border-left: 3px solid var(--c-accent); border-radius: 8px; padding: 12px 16px; margin: 0 0 16px; }
   footer { color: var(--c-muted); font-size: 13px; margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--c-line); }
+  .langbar { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 24px; }
+  .langbar button { font: inherit; font-size: 13px; padding: 6px 14px; border: 1px solid var(--c-line); background: var(--c-surface); color: var(--c-muted); border-radius: 999px; cursor: pointer; }
+  .langbar button[aria-pressed="true"] { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
+  .lang { display: none; }
+  body[data-lang="en"] .lang-en, body[data-lang="ja"] .lang-ja { display: block; }
 </style>
 </head>
-<body>
+<body data-lang="en">
 <main>
+<div class="langbar">
+  <button type="button" data-set="en" aria-pressed="true">English</button>
+  <button type="button" data-set="ja" aria-pressed="false">日本語</button>
+</div>
+
+<!-- English -->
+<div class="lang lang-en">
+<h1>Terms of Service</h1>
+<p class="meta">Last updated: May 23, 2026 / Applies to: SubscSmart (iOS / Android)</p>
+<div class="callout">
+  These Terms of Service (the "Terms") govern your use of the "SubscSmart" application (the "App"). By downloading or using the App, you are deemed to have agreed to these Terms.
+</div>
+<h2>1. Overview</h2>
+<p>SubscSmart is an app that lets users record and manage their own subscription services. All data is stored on the user's device and is not sent to external servers.</p>
+<h2>2. Eligibility</h2>
+<p>This App is intended for users aged 13 and over. Users under 13 should use it under the supervision and consent of a parent or guardian.</p>
+<h2>3. Paid features (SubscSmart Pro)</h2>
+<ul>
+  <li><strong>Monthly plan</strong>: An auto-renewing subscription, subject to the App Store payment terms. The price is displayed localized in the App Store.</li>
+  <li><strong>Lifetime plan</strong>: A one-time purchase that grants permanent access to Pro features. The price is displayed localized in the App Store.</li>
+  <li>Purchases, cancellations and refunds are governed by the terms of the Apple App Store.</li>
+  <li>Purchased licenses can be restored on the same Apple ID via "Restore Purchases."</li>
+</ul>
+<h2>4. Prohibited conduct</h2>
+<ul>
+  <li>Reverse engineering, modifying, or redistributing the App</li>
+  <li>Using the App for any illegal activity or to cause harm to third parties</li>
+  <li>Gaining unauthorized access or imposing excessive load using automated tools</li>
+</ul>
+<h2>5. Disclaimer</h2>
+<p>The App is provided "as is." Except for liability that cannot be excluded under applicable law, we assume no responsibility for any damages arising from use of the App.</p>
+<h2>6. Changes to or termination of the service</h2>
+<p>We may change the App's features or discontinue the service without prior notice. Where possible, we will announce important changes in advance within the App or on the App Store page.</p>
+<h2>7. Governing law and jurisdiction</h2>
+<p>These Terms are governed by the laws of Japan, and the Tokyo District Court shall be the exclusive court of first instance for any disputes.</p>
+<h2>8. Changes to these Terms</h2>
+<p>If we revise these Terms, we will post the revised version on this page. For important changes, we will also provide notice within the App.</p>
+<h2>9. Contact</h2>
+<ul>
+  <li>Support: <a href="support.html">Support page</a></li>
+</ul>
+<footer><p>SubscSmart Terms of Service v1.0 — 2026-05-23</p></footer>
+</div>
+
+<!-- 日本語 -->
+<div class="lang lang-ja">
 <h1>利用規約</h1>
 <p class="meta">最終更新日: 2026 年 5 月 23 日 / 適用アプリ: SubscSmart（iOS / Android）</p>
 <div class="callout">
@@ -65,6 +116,35 @@
   <li>サポート: <a href="support.html">サポートページ</a></li>
 </ul>
 <footer><p>SubscSmart Terms of Service v1.0 — 2026-05-23</p></footer>
+</div>
+
 </main>
+<script>
+  (function () {
+    var TITLES = { en: "Terms of Service — SubscSmart", ja: "利用規約 — SubscSmart" };
+    function setLang(l) {
+      if (l !== "ja") l = "en";
+      document.body.setAttribute("data-lang", l);
+      document.documentElement.setAttribute("lang", l);
+      document.title = TITLES[l];
+      var btns = document.querySelectorAll(".langbar button");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].setAttribute("aria-pressed", btns[i].getAttribute("data-set") === l ? "true" : "false");
+      }
+      try { localStorage.setItem("ss-legal-lang", l); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem("ss-legal-lang"); } catch (e) {}
+    var nav = (navigator.language || "en").toLowerCase();
+    var initial = saved || (nav.indexOf("ja") === 0 ? "ja" : "en");
+    document.addEventListener("DOMContentLoaded", function () {
+      var btns = document.querySelectorAll(".langbar button");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () { setLang(this.getAttribute("data-set")); });
+      }
+      setLang(initial);
+    });
+  })();
+</script>
 </body>
 </html>

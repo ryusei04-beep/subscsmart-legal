@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>サポート — SubscSmart</title>
+<title>Support — SubscSmart</title>
 <style>
   :root {
     --c-bg: #fafaf7;
+    --c-surface: #ffffff;
     --c-fg: #1f2024;
     --c-muted: #6b7077;
     --c-line: #e6e4de;
@@ -16,7 +17,7 @@
     --maxw: 560px;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --c-bg: #0f172a; --c-fg: #ececef; --c-muted: #9aa0a8; --c-line: #2c2e36; --c-accent: #34d399; }
+    :root { --c-bg: #0f172a; --c-surface: #1c1d23; --c-fg: #ececef; --c-muted: #9aa0a8; --c-line: #2c2e36; --c-accent: #34d399; }
   }
   body { margin: 0; background: var(--c-bg); color: var(--c-fg); font: 16px/1.7 var(--font-body); }
   main { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
@@ -41,30 +42,94 @@
     font-weight: 600;
   }
   footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--c-line); color: var(--c-muted); font-size: 13px; }
+  .langbar { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 24px; }
+  .langbar button { font: inherit; font-size: 13px; padding: 6px 14px; border: 1px solid var(--c-line); background: var(--c-surface); color: var(--c-muted); border-radius: 999px; cursor: pointer; }
+  .langbar button[aria-pressed="true"] { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
+  .lang { display: none; }
+  body[data-lang="en"] .lang-en, body[data-lang="ja"] .lang-ja { display: block; }
 </style>
 </head>
-<body>
+<body data-lang="en">
 <main>
-  <h1>SubscSmart サポート</h1>
-  <p class="meta">最終更新: 2026-05-25</p>
-
-  <p>不具合の報告、機能のご要望、プライバシーに関するお問い合わせは GitHub Issues からお願いします。</p>
-
-  <div class="card">
-    <strong>お問い合わせ（推奨）</strong>
-    <p style="margin: 8px 0 0; font-size: 15px;">公開リポジトリの Issue トラッカーです。再現手順と端末・OS バージョンを書いていただけると助かります。</p>
-    <a class="btn" href="https://github.com/ryusei04-beep/subscsmart-legal/issues/new/choose">新しい Issue を作成</a>
+  <div class="langbar">
+    <button type="button" data-set="en" aria-pressed="true">English</button>
+    <button type="button" data-set="ja" aria-pressed="false">日本語</button>
   </div>
 
-  <p>関連ドキュメント:</p>
-  <ul>
-    <li><a href="privacy.html">プライバシーポリシー</a></li>
-    <li><a href="terms.html">利用規約</a></li>
-  </ul>
+  <!-- English -->
+  <div class="lang lang-en">
+    <h1>SubscSmart Support</h1>
+    <p class="meta">Last updated: 2026-05-25</p>
 
-  <footer>
-    <p>SubscSmart</p>
-  </footer>
+    <p>For bug reports, feature requests, and privacy inquiries, please use GitHub Issues.</p>
+
+    <div class="card">
+      <strong>Contact (recommended)</strong>
+      <p style="margin: 8px 0 0; font-size: 15px;">This is the issue tracker on our public repository. It helps if you include the steps to reproduce and your device and OS version.</p>
+      <a class="btn" href="https://github.com/ryusei04-beep/subscsmart-legal/issues/new/choose">Create a new Issue</a>
+    </div>
+
+    <p>Related documents:</p>
+    <ul>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+    </ul>
+
+    <footer>
+      <p>SubscSmart</p>
+    </footer>
+  </div>
+
+  <!-- 日本語 -->
+  <div class="lang lang-ja">
+    <h1>SubscSmart サポート</h1>
+    <p class="meta">最終更新: 2026-05-25</p>
+
+    <p>不具合の報告、機能のご要望、プライバシーに関するお問い合わせは GitHub Issues からお願いします。</p>
+
+    <div class="card">
+      <strong>お問い合わせ（推奨）</strong>
+      <p style="margin: 8px 0 0; font-size: 15px;">公開リポジトリの Issue トラッカーです。再現手順と端末・OS バージョンを書いていただけると助かります。</p>
+      <a class="btn" href="https://github.com/ryusei04-beep/subscsmart-legal/issues/new/choose">新しい Issue を作成</a>
+    </div>
+
+    <p>関連ドキュメント:</p>
+    <ul>
+      <li><a href="privacy.html">プライバシーポリシー</a></li>
+      <li><a href="terms.html">利用規約</a></li>
+    </ul>
+
+    <footer>
+      <p>SubscSmart</p>
+    </footer>
+  </div>
 </main>
+<script>
+  (function () {
+    var TITLES = { en: "Support — SubscSmart", ja: "サポート — SubscSmart" };
+    function setLang(l) {
+      if (l !== "ja") l = "en";
+      document.body.setAttribute("data-lang", l);
+      document.documentElement.setAttribute("lang", l);
+      document.title = TITLES[l];
+      var btns = document.querySelectorAll(".langbar button");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].setAttribute("aria-pressed", btns[i].getAttribute("data-set") === l ? "true" : "false");
+      }
+      try { localStorage.setItem("ss-legal-lang", l); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem("ss-legal-lang"); } catch (e) {}
+    var nav = (navigator.language || "en").toLowerCase();
+    var initial = saved || (nav.indexOf("ja") === 0 ? "ja" : "en");
+    document.addEventListener("DOMContentLoaded", function () {
+      var btns = document.querySelectorAll(".langbar button");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () { setLang(this.getAttribute("data-set")); });
+      }
+      setLang(initial);
+    });
+  })();
+</script>
 </body>
 </html>
